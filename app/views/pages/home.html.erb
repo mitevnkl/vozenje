@@ -1,2 +1,10 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+<%= simple_form_for @post do |f| %>
+  <%= f.input :from_city %>
+  <%= f.input :to_city %>
+  <%= f.input :start_time %>
+  <%= f.input :end_time %>
+  <%= f.input :spaces %>
+  <%= f.submit %>
+<% end %>
+</div>
