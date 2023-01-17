@@ -1,2 +1,12 @@
 // Import page-specific CSS files here.
 @import "home";
+
+select {
+  border: 0;
+}
+
+::-webkit-calendar-picker-indicator {
+  position: absolute;
+  width: 100%;
+  background: transparent;
+}

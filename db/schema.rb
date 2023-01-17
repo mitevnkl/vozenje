@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_16_121723) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_16_123613) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "posts", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.boolean "post_type"
+    t.string "post_type"
     t.datetime "start_time"
     t.datetime "end_time"
     t.integer "spaces"
@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_16_121723) do
     t.string "to_city"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

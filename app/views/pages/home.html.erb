@@ -1,10 +1,34 @@
 <div class="container">
-<%= simple_form_for @post do |f| %>
-  <%= f.input :from_city %>
-  <%= f.input :to_city %>
-  <%= f.input :start_time %>
-  <%= f.input :end_time %>
-  <%= f.input :spaces %>
-  <%= f.submit %>
-<% end %>
+  <p class="text-muted"><small>Create a post:</small></p>
+  <div class="bg-white p-3">
+    <%= simple_form_for @post do |f| %>
+      <div class="row g-3">
+        <div class="col-6">
+          <%= f.input :post_type, collection: ["Nudam", "Baram"], label: "Baram/Nudam", error: 'Mandatory' %>
+        </div>
+        <div class="col-6">
+          <%= f.input :spaces, collection: ["1", "2", "3", "4"], label: "Mesta broj", error: 'Mandatory' %>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-6">
+          <%= f.input :from_city, collection: ["Skopje", "Kocani"], label: "Od grad", error: 'Mandatory' %>
+        </div>
+        <div class="col-6">
+          <%= f.input :to_city, collection: ["Skopje", "Kocani"], label: "Do grad", error: 'Mandatory' %>
+        </div>
+      </div>
+
+      <div class="row g-1">
+        <div class="col-6">
+          <%= f.input :start_time, html5: true, label: "Vreme od", error: 'Mandatory' %>
+        </div>
+        <div class="col-6">
+          <%= f.input :end_time, html5: true, label: "Vreme do", error: 'Mandatory' %>
+        </div>
+      </div>
+      <p class="text-center"><%= f.submit 'Baraj', class: "mt-2 btn btn-lg btn-dark w-100" %></p>
+    <% end %>
+  </div>
 </div>
