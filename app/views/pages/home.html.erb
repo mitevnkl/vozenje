@@ -2,7 +2,7 @@
   <p class="text-muted"><small>Create a post:</small></p>
   <div class="bg-white p-3">
     <%= simple_form_for @post do |f| %>
-      <div class="row g-3">
+      <div class="row mb-3 g-3">
         <div class="col-6">
           <%= f.input :post_type, collection: ["Nudam", "Baram"], label: "Baram/Nudam", error: 'Mandatory' %>
         </div>
@@ -11,7 +11,7 @@
         </div>
       </div>
 
-      <div class="row g-3">
+      <div class="row mb-3 g-3">
         <div class="col-6">
           <%= f.input :from_city, collection: ["Skopje", "Kocani"], label: "Od grad", error: 'Mandatory' %>
         </div>
@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <div class="row g-1">
+      <div class="row mb-3 g-1">
         <div class="col-6">
           <%= f.input :start_time, html5: true, label: "Vreme od", error: 'Mandatory' %>
         </div>

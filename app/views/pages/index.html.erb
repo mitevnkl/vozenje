@@ -1,20 +1,20 @@
 <div class="container">
-<p class="text-muted"><small><%= @my_post.minutes_ago %></small></p>
-<h5 class="fw-bolder mb-3"><i>"<%= @my_post.post_type %> <%= @my_post.mesta %>, <%= @my_post.from_city %> - <%= @my_post.to_city %>, <%= @my_post.od_do %>"</i></h5>
-<div class="bg-warning mb-3 p-3 d-flex justify-content-between align-items-center">
-  <p class="m-0 text-danger">This post will be destroyed in <%= @my_post.self_destroy %></p>
-  <%= button_to 'Delete', destroy_path(@my_post), style: "margin-left: 1rem", class: "btn btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
-</div>
-<p class="text-muted"><small>Suggested matches</small></p>
-<% @matches.each do |post| %>
-  <div class="bg-white p-3">
-  <%= post.from_city %>
-  <%= post.to_city %>
-  <%= post.start_time %>
-  <%= post.end_time %>
-  <%= post.spaces %>
-  <%= post.post_type %>
-  <%= post.user.email %>
+  <p class="text-muted"><small><%= @my_post.minutes_ago %></small></p>
+  <h5 class="fw-bolder mb-3"><i>"<%= @my_post.post_type %> <%= @my_post.mesta %>, <%= @my_post.from_city %> - <%= @my_post.to_city %>, <%= @my_post.od_do %>"</i></h5>
+  <div class="bg-warning mb-3 p-3 d-flex justify-content-between align-items-center">
+    <p class="m-0 text-danger">This post will be destroyed in <%= @my_post.self_destroy %></p>
+    <%= button_to 'Delete', destroy_path(@my_post), style: "margin-left: 1rem", class: "btn btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
-<% end %>
+  <p class="text-muted"><small>Suggested matches</small></p>
+  <% @matches.each do |post| %>
+    <div class="bg-white p-3">
+      <%= post.from_city %>
+      <%= post.to_city %>
+      <%= post.start_time %>
+      <%= post.end_time %>
+      <%= post.spaces %>
+      <%= post.post_type %>
+      <%= post.user.email %>
+    </div>
+  <% end %>
 </div>

@@ -37,7 +37,7 @@ class Post < ApplicationRecord
     if hours == 0
       return "Posted #{minutes} minutes ago"
     else
-      if hour == 1
+      if hours == 1
       return "Posted #{hours} hour and #{minutes} minutes ago"
       else
         return "Posted #{hours} hours and #{minutes} minutes ago"
