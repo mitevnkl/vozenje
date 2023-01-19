@@ -43,7 +43,13 @@ class PagesController < ApplicationController
     redirect_to root_path, alert: "Your post has been deleted"
   end
 
-  def policy
+  def privacy
+  end
+
+  def terms
+  end
+
+  def data_deletion
   end
 
   private

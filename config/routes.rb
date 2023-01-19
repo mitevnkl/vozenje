@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   post "posts", to: "pages#create"
   get "posts", to: "pages#index"
   delete "posts/:id", to: "pages#destroy", as: :destroy
-  get "policy", to: "pages#policy"
+  get "privacy", to: "pages#privacy"
+  get "terms", to: "pages#terms"
+  get "data_deletion", to: "pages#data_deletion"
   # Defines the root path route ("/")
   # root "articles#index"
 end
