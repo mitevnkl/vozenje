@@ -1,6 +1,6 @@
 <div class="container">
   <% if user_signed_in? %>
-  <p class="text-muted"><small>Welcome, <%= current_user.first_name %></small></p>
+  <p class="text-muted"><small>Welcome, <%= current_user.name %></small></p>
   <div class="bg-white p-3">
     <%= simple_form_for @post do |f| %>
       <div class="row mb-3 g-3">
