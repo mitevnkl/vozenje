@@ -1,11 +1,13 @@
 class PagesController < ApplicationController
-  # skip_before_action :authenticate_user!, only: [ :home]
+  skip_before_action :authenticate_user!, only: [ :home, :policy ]
 
   def home
-    if current_user.posts.empty?
-      @post = Post.new
-    else
-      redirect_to posts_path
+    if user_signed_in?
+      if current_user.posts.empty?
+        @post = Post.new
+      else
+        redirect_to posts_path
+      end
     end
   end
 
@@ -39,6 +41,9 @@ class PagesController < ApplicationController
     @my_post = Post.find(params[:id])
     @my_post.destroy!
     redirect_to root_path, alert: "Your post has been deleted"
+  end
+
+  def policy
   end
 
   private

@@ -1,5 +1,6 @@
 <div class="container">
-  <p class="text-muted"><small>Create a post:</small></p>
+  <% if user_signed_in? %>
+  <p class="text-muted"><small>Welcome, <%= current_user.first_name %></small></p>
   <div class="bg-white p-3">
     <%= simple_form_for @post do |f| %>
       <div class="row mb-3 g-3">
@@ -31,4 +32,11 @@
       <p class="text-center"><%= f.submit 'Baraj', class: "mt-2 btn btn-lg btn-dark w-100" %></p>
     <% end %>
   </div>
+  <% else %>
+    <h4 class="my-4"><strong>Welcome to our ride-sharing app!</strong></h4>
+    <%= button_to user_facebook_omniauth_authorize_path, class: "btn btn-primary mb-3", data: { turbo: false } do %>
+      <p class="m-0"><i class="fa-brands fa-facebook"></i> Continue with Facebook</p>
+    <% end %>
+    <%= link_to "Terms of service", policy_path %>
+  <% end %>
 </div>
