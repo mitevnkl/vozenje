@@ -1,7 +1,7 @@
 <div class="container">
   <% if user_signed_in? %>
-  <p class="text-muted"><small>Welcome, <%= current_user.name %></small></p>
-  <div class="bg-white p-3">
+  <p class="px-3">Welcome, <%= current_user.name %>!</p>
+  <div class="bg-white shadow-sm p-3 mx-1 rounded">
     <%= simple_form_for @post do |f| %>
       <div class="row mb-3 g-3">
         <div class="col-6">
@@ -21,15 +21,15 @@
         </div>
       </div>
 
-      <div class="row mb-3 g-1">
+      <div class="row mb-3 g-2">
         <div class="col-6">
-          <%= f.input :start_time, html5: true, label: "Vreme od", error: 'Mandatory' %>
+          <%= f.input :start_time, html5: true, label: "Trgnuvanje od", error: 'Mandatory' %>
         </div>
         <div class="col-6">
-          <%= f.input :end_time, html5: true, label: "Vreme do", error: 'Mandatory' %>
+          <%= f.input :end_time, html5: true, label: "Trgnuvanje do", error: 'Mandatory' %>
         </div>
       </div>
-      <p class="text-center"><%= f.submit 'Baraj', class: "mt-2 btn btn-lg btn-dark w-100" %></p>
+      <p class="text-center"><%= f.submit 'Search', class: "mt-2 btn btn-lg btn-dark w-100" %></p>
     <% end %>
   </div>
   <% else %>
