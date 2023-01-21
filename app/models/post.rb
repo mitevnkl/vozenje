@@ -35,12 +35,12 @@ class Post < ApplicationRecord
     hours = (has_expired / 1.hour).to_i
     minutes = (((has_expired) % 1.hour) / 1.minute).to_i
     if hours == 0
-      return "Posted #{minutes} minutes ago"
+      return "You posted #{minutes} minutes ago"
     else
       if hours == 1
-      return "Posted #{hours} hour and #{minutes} minutes ago"
+      return "You posted #{hours} hour and #{minutes} minutes ago"
       else
-        return "Posted #{hours} hours and #{minutes} minutes ago"
+        return "You posted #{hours} hours and #{minutes} minutes ago"
       end
     end
   end
