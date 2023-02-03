@@ -1,13 +1,15 @@
-<div class="navbar mb-3 px-2 shadow-sm navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar mb-3 px-2 navbar-expand-sm navbar-lewagon">
   <div class="container col-lg-5 mx-auto">
     <%= link_to root_path, class: "text-decoration-none text-black" do %>
-      <h4 class="my-3 fw-bolder text-decoration-none">👍🏼 caravan.mk</h4>
+      <div class="d-flex align-items-center">
+      <%= image_tag "logo.jpg", style:"width: 2rem; border-radius: 0.25rem;", class:"" %>
+      <h4 class="my-3 mx-2 fw-bolder text-decoration-none">Caravan.mk</h4>
+      </div>
     <% end %>
     <% if user_signed_in? %>
       <div class="nav-item dropdown">
         <%= image_tag "#{current_user.fb_pic_url}", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/policy">Give feedback</a>
           <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: "false" }, class: "dropdown-item" %>
         </div>
       </div>

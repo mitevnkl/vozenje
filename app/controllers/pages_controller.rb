@@ -31,7 +31,7 @@ class PagesController < ApplicationController
     @post = Post.new(post_params)
     @post.user = current_user
     if @post.save
-      redirect_to root_path
+      redirect_to root_path, notice: "Успешно креиравте објава"
     else
       render :home
     end
@@ -40,7 +40,7 @@ class PagesController < ApplicationController
   def destroy
     @my_post = Post.find(params[:id])
     @my_post.destroy!
-    redirect_to root_path, alert: "Your post has been deleted"
+    redirect_to root_path, alert: "Објавата е избришана"
   end
 
   def privacy

@@ -10,23 +10,61 @@ class Post < ApplicationRecord
       # return hours and minutes left
       hours = (has_expired / 1.hour).to_i
       minutes = (((has_expired) % 1.hour) / 1.minute).to_i
-      return "#{hours} hours and #{minutes} minutes"
+      return "#{hours - 1} часа и #{minutes} минути"
     end
   end
 
   def mesta
     if self.spaces == 1
-      return "1 mesto"
+      return "1 место"
     else
-      return "#{self.spaces} mesta"
+      return "#{self.spaces} места"
+    end
+  end
+
+  def start_day
+    case self.start_time.strftime('%A')
+    when 'Monday'
+      return 'Понеделник'
+    when 'Tuesday'
+      return 'Вторник'
+    when 'Wednesday'
+      return 'Среда'
+    when 'Thursday'
+      return 'Четврток'
+    when 'Friday'
+      return 'Петок'
+    when 'Saturday'
+      return 'Сабота'
+    when 'Sunday'
+      return 'Недела'
+    end
+  end
+
+  def end_day
+    case self.end_time.strftime('%A')
+    when 'Monday'
+      return 'Понеделник'
+    when 'Tuesday'
+      return 'Вторник'
+    when 'Wednesday'
+      return 'Среда'
+    when 'Thursday'
+      return 'Четврток'
+    when 'Friday'
+      return 'Петок'
+    when 'Saturday'
+      return 'Сабота'
+    when 'Sunday'
+      return 'Недела'
     end
   end
 
   def od_do
     if self.start_time.strftime('%A') == self.end_time.strftime('%A')
-      return "za #{self.start_time.strftime('%A')} od #{self.start_time.strftime('%H:%M')} do #{self.end_time.strftime('%H:%M')}"
+      return "за #{self.start_day} од #{self.start_time.strftime('%H:%M')} до #{self.end_time.strftime('%H:%M')}"
     else
-      return "za #{self.start_time.strftime('%A')} od #{self.start_time.strftime('%H:%M')}, do #{self.end_time.strftime('%A')} #{self.end_time.strftime('%H:%M')}"
+      return "за #{self.start_day} од #{self.start_time.strftime('%H:%M')}, до #{self.end_day} #{self.end_time.strftime('%H:%M')}"
     end
   end
 
@@ -35,22 +73,14 @@ class Post < ApplicationRecord
     hours = (has_expired / 1.hour).to_i
     minutes = (((has_expired) % 1.hour) / 1.minute).to_i
     if hours == 0
-      return "You posted #{minutes} minutes ago"
+      return "Пред #{minutes} минути"
     else
       if hours == 1
-      return "You posted #{hours} hour and #{minutes} minutes ago"
+      return "Пред #{hours} час и #{minutes} минути"
       else
-        return "You posted #{hours} hours and #{minutes} minutes ago"
+        return "Пред #{hours} часа и #{minutes} минути"
       end
     end
   end
 
-  # def matches
-  #   other_posts = Post.where(from_city: self.from_city, to_city: self.to_city, user: !self.user)
-  #   matches = []
-  #   other_posts.each do |post|
-  #     matches << post
-  #   end
-  #   return matches
-  # end
 end
