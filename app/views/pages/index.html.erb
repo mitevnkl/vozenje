@@ -1,4 +1,4 @@
-<div class="bg-white shadow-sm mb-3 p-4">
+<div class="bg-white mb-3 p-4">
   <div class="nav-item dropdown text-center">
     <%= image_tag "#{current_user.fb_pic_url}", class: "avatar avatar-large border border-success border-2 shadow-sm dropdown-toggle", style:"width: 5rem", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -11,8 +11,23 @@
   <%= button_to 'Избриши објава', destroy_path(@my_post), style: "", class: "btn w-100 mt-2 btn-outline-primary", method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>
 <% if @matches.length == 0 %>
-  <p class="text-muted text-center"><small>Не се пронајдени резултати</small></p>
-  <div class="text-center"><%= image_tag "no_results.svg", class:"w-75 p-5" %></div>
+  <p class="mt-5 text-center">😔 Не се пронајдени резултати.</p>
+  <p class="px-4 text-center text-muted">Можеби доволен број на корисници сеуште немат слушнато за оваа алатка.</p>
+  <p class="text-center"><%= link_to "Сподели со пријател", "#", class:"btn btn-lg btn-dark", id: "share-link", data: { url: root_path } %></p>
+  <script>
+    document.getElementById("share-link").addEventListener("click", function(event) {
+      event.preventDefault();
+      if (navigator.share) {
+        navigator.share({
+          url: event.target.dataset.url
+        })
+          .then(() => console.log("Shared successfully"))
+          .catch(error => console.error("Error sharing:", error));
+      } else {
+        console.error("Web Share API not supported");
+      }
+    });
+  </script>
 <% else %>
 <p class="text-muted text-center"><small>Пронајдени мечови</small></p>
   <% @matches.each do |post| %>
