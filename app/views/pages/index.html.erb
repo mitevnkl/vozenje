@@ -11,7 +11,7 @@
   <%= button_to 'Избриши објава', destroy_path(@my_post), style: "", class: "btn w-100 mt-2 btn-outline-primary", method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>
 <% if @matches.length == 0 %>
-  <p class="text-muted text-center"><small>Не е пронајдено ништо</small></p>
+  <p class="text-muted text-center"><small>Не се пронајдени резултати</small></p>
   <div class="text-center"><%= image_tag "no_results.svg", class:"w-75 p-5" %></div>
 <% else %>
 <p class="text-muted text-center"><small>Пронајдени мечови</small></p>
@@ -19,17 +19,19 @@
     <hr class="mx-3">
     <div class="d-flex mx-3 px-2 justify-content-between align-items-center">
       <div class="d-flex align-items-center">
-        <%= image_tag "https://kitt.lewagon.com/placeholder/users/arthur-littm", class:"avatar-large" %>
+        <%= image_tag "#{post.user.fb_pic_url}", class:"avatar-large" %>
         <div class="px-3">
-          <p class="mb-0 mt-1"><strong>Aleksandar N.</strong></p>
-          <p class="m-0 text-muted"><small>10 minutes ago</small></p>
+          <p class="mb-0 mt-1"><strong><%= post.user.name %></strong></p>
+          <p class="m-0 text-muted"><small><%= post.minutes_ago %></small></p>
         </div>
       </div>
       <div>
-        <%= link_to "#", class:"btn btn-lg btn-white rounded-4 shadow-lg border-0", style:"width: 3.25rem; height: 3.25rem;" do %>
-          <i class="fa fa-solid my-2 text-dark fa-phone"></i>
+        <% if post.phone.present? %>
+          <%= link_to post.phone, "tel:#{post.phone}", class:"btn btn-lg btn-white rounded-4 shadow-lg border-0", style:"width: 3.25rem; height: 3.25rem;" do %>
+            <i class="fa fa-solid my-2 text-dark fa-phone"></i>
+          <% end %>
         <% end %>
-        <%= link_to "#", class:"btn mx-1 btn-lg btn-white rounded-4 shadow-lg border-0", style:"width: 3.25rem; height:3.25rem;" do %>
+        <%= link_to post.user.profile_link, class:"btn mx-1 btn-lg btn-white rounded-4 shadow-lg border-0", style:"width: 3.25rem; height:3.25rem;" do %>
           <i class="fa fa-brands my-2 fa-facebook-f" style="color: #4267B2"></i>
         <% end %>
       </div>
