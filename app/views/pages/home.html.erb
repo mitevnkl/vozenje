@@ -5,7 +5,10 @@
     <div class="nav-item dropdown px-3">
       <%= image_tag "#{current_user.fb_pic_url}", class: "avatar border border-white border-2 shadow dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
       <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-        <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: "false" }, class: "dropdown-item" %>
+        <%= button_to "Одјави се", destroy_user_session_path, method: :delete, data: { turbo: "false" }, class: "dropdown-item" %>
+        <%= link_to "Политика на приватност", privacy_path, class:"dropdown-item" %>
+        <%= link_to "Услови на користење", terms_path, class:"dropdown-item" %>
+        <%= mail_to "mitev.nkl@gmail.com", "Контакт", class:"dropdown-item" %>
       </div>
     </div>
   </div>
@@ -44,7 +47,7 @@
   <% else %>
     <h1 class="text-center"><%= image_tag "logo.jpg", style:"width: 5rem; border-radius: 0.75rem;" %></h1>
     <h3 class="px-3 text-center"><strong>Caravan.mk</strong></h3>
-    <p class="text-center px-4 mb-5">Згоѓа за делење на превоз низ Македонија.</p>
+    <p class="text-center px-4 mb-4">Згоѓа за делење на превоз низ Македонија.</p>
     <div class="px-2 mb-2 d-flex align-items-start">
       <h5 class="mx-2 mt-0 p-1 rounded" style="background-color: #bebebe"><strong>1.</strong></h5>
       <div>
@@ -72,7 +75,6 @@
       <p class="my-0"><i class="fa-brands fa-facebook"></i> Најава</p>
     <% end %>
     </div>
-  <% end %>
     <div class="fixed-bottom col-lg-5 p-4 mx-auto">
       <p class="text-center">© Caravan.mk 2023</p>
       <p class="text-center" style="">
@@ -81,4 +83,5 @@
         <%= mail_to "mitev.nkl@gmail.com", "Контакт" %>
       </p>
     </div>
+  <% end %>
 </div>
