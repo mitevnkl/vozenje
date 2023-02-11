@@ -1,12 +1,28 @@
 <div class="bg-white mb-3 p-4">
   <div class="nav-item dropdown text-center">
-    <%= image_tag "#{current_user.fb_pic_url}", class: "avatar avatar-large border border-success border-2 shadow-sm dropdown-toggle", style:"width: 5rem", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+    <%= image_tag "#{current_user.fb_pic_url}",
+      class: "avatar avatar-large border border-success border-2 shadow-sm dropdown-toggle",
+      style:"width: 5rem", id: "navbarDropdown",
+      data: { bs_toggle: "dropdown" },
+      'aria-haspopup': true,
+      'aria-expanded': false
+    %>
     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-      <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: "false" }, class: "dropdown-item" %>
+      <%= button_to "Log out",
+        destroy_user_session_path,
+        method: :delete,
+        data: { turbo: "false" },
+        class: "dropdown-item"
+      %>
     </div>
   </div>
-  <p class="text-muted text-center mt-2"><small><%= @my_post.minutes_ago %> објавивте</small></p>
-  <h5 class="fw-bolder mb-3 text-center">" <%= @my_post.post_type %> <%= @my_post.mesta %>, <%= @my_post.from_city %> - <%= @my_post.to_city %>, <%= @my_post.od_do %> "</h5>
+  <p class="text-muted text-center mt-2">
+    <small><%= @my_post.minutes_ago %> објавивте</small>
+  </p>
+  <h5 class="fw-bolder mb-3 text-center">
+    "<%= @my_post.post_type %>
+    <%= @my_post.mesta %>,
+    <%= @my_post.from_city %> - <%= @my_post.to_city %>, <%= @my_post.od_do %> "</h5>
   <p class="text-center m-0 text-muted"><small>Ќе се избрише за <%= @my_post.self_destroy %></small></p>
   <%= button_to 'Избриши објава', destroy_path(@my_post), style: "", class: "btn w-100 mt-2 btn-outline-primary", method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>

@@ -1,86 +1,85 @@
 <div class="container mt-4">
-  <% if user_signed_in? %>
-  <div class="d-flex mb-4 align-items-center justify-content-between">
-    <h4 class="px-3 m-0"><strong>Здраво, <%= current_user.name.split.first %>!</strong></h4>
-    <div class="nav-item dropdown px-3">
-      <%= image_tag "#{current_user.fb_pic_url}", class: "avatar border border-white border-2 shadow dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-      <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-        <%= button_to "Одјави се", destroy_user_session_path, method: :delete, data: { turbo: "false" }, class: "dropdown-item" %>
-        <%= link_to "Политика на приватност", privacy_path, class:"dropdown-item" %>
-        <%= link_to "Услови на користење", terms_path, class:"dropdown-item" %>
-        <%= mail_to "mitev.nkl@gmail.com", "Контакт", class:"dropdown-item" %>
-      </div>
-    </div>
-  </div>
-  <div class="bg-white shadow-sm p-3 mx-1 rounded">
-    <%= simple_form_for @post do |f| %>
-      <div class="row mb-3 g-3">
-        <div class="col-6">
-          <%= f.input :post_type, collection: ["Нудам", "Барам"], label: "Барам/нудам", error: 'Mandatory' %>
-        </div>
-        <div class="col-6">
-          <%= f.input :spaces, collection: ["1", "2", "3", "4"], label: "Бр. места", error: 'Mandatory' %>
-        </div>
-      </div>
-      <div class="row mb-3 g-3">
-        <div class="col-6">
-          <%= f.input :from_city, collection: ["Скопје", "Кочани"], label: "Oд град", error: 'Mandatory' %>
-        </div>
-        <div class="col-6">
-          <%= f.input :to_city, collection: ["Скопје", "Кочани"], label: "До град", error: 'Mandatory' %>
-        </div>
-      </div>
-
-      <div class="row mb-3 g-2">
-        <div class="col-6">
-          <%= f.input :start_time, html5: true, label: "Тргање од", error: 'Mandatory' %>
-        </div>
-        <div class="col-6">
-          <%= f.input :end_time, html5: true, label: "Тргање до", error: 'Mandatory' %>
-        </div>
-      </div>
-      <%= f.input :phone, label: "Мобилен", input_html: { data: { autocomplete: "on" } }, placeholder: "Опционално", error: 'Mandatory' %>
-      <p class="text-center"><%= f.submit 'Барај', class: "mt-4 btn btn-lg btn-dark w-100" %></p>
-    <% end %>
-  </div>
+  <% if !user_signed_in? %>
+    <%= render 'shared/value_prop' %>
   <% else %>
-    <h1 class="text-center"><%= image_tag "logo.jpg", style:"width: 5rem; border-radius: 0.75rem;" %></h1>
-    <h3 class="px-3 text-center"><strong>Caravan.mk</strong></h3>
-    <p class="text-center px-4 mb-4">Згоѓа за делење на превоз низ Македонија.</p>
-    <div class="px-2 mb-2 d-flex align-items-start">
-      <h5 class="mx-2 mt-0 p-1 rounded" style="background-color: #bebebe"><strong>1.</strong></h5>
-      <div>
-        <h5 class="mb-1"><strong>Најави се со Фејсбук</strong></h5>
-        <p class="text-muted"><small>Брза и лесна регистрација со вашиот постоечки Facebook профил.</small></p>
+    <div class="d-flex mb-4 align-items-center justify-content-between">
+      <h4 class="px-3 m-0"><strong>Здраво, <%= current_user.name.split.first %>!</strong></h4>
+      <div class="nav-item dropdown px-3">
+        <%= image_tag "#{current_user.fb_pic_url}",
+          class: "avatar border border-white border-2 shadow dropdown-toggle",
+          id: "navbarDropdown",
+          data: { bs_toggle: "dropdown" },
+          'aria-haspopup': true,
+          'aria-expanded': false
+        %>
+        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <%= button_to "Одјави се",
+            destroy_user_session_path,
+            method: :delete,
+            data: { turbo: "false" },
+            class: "dropdown-item"
+          %>
+          <%= link_to "Политика на приватност", privacy_path, class:"dropdown-item" %>
+          <%= link_to "Услови на користење", terms_path, class:"dropdown-item" %>
+          <%= mail_to "mitev.nkl@gmail.com", "Контакт", class:"dropdown-item" %>
+        </div>
       </div>
     </div>
-    <div class="px-2 mb-2 d-flex align-items-start">
-      <h5 class="mx-2 mt-0 p-1 rounded" style="background-color: #bebebe"><strong>2.</strong></h5>
-      <div>
-        <h5 class="mb-1"><strong>Постирај објава</strong></h5>
-        <p class="text-muted"><small>Објавете ги вашите податоци за патување и види ги потенцијалните мечови.</small></p>
-      </div>
-    </div>
-    <div class="px-2 mb-2 d-flex align-items-start">
-      <h5 class="mx-2 mt-0 p-1 rounded" style="background-color: #bebebe"><strong>3.</strong></h5>
-      <div>
-        <h5 class="mb-1"><strong>Контактирај/биди контактиран</strong></h5>
-        <p class="text-muted"><small>Исконтактирај го објавувачот на погодниот меч за вашето патување и договорете се.</small></p>
-      </div>
-    </div>
-
-    <div class="text-center px-3">
-    <%= button_to user_facebook_omniauth_authorize_path, class: "btn btn-lg btn-dark w-100 text-center my-3", data: { turbo: false } do %>
-      <p class="my-0"><i class="fa-brands fa-facebook"></i> Најава</p>
-    <% end %>
-    </div>
-    <div class="fixed-bottom col-lg-5 p-4 mx-auto">
-      <p class="text-center">© Caravan.mk 2023</p>
-      <p class="text-center" style="">
-        <%= link_to "Политика на приватност", privacy_path %> -
-        <%= link_to "Услови на користење", terms_path %> -
-        <%= mail_to "mitev.nkl@gmail.com", "Контакт" %>
-      </p>
+    <div class="bg-white shadow-sm p-3 mx-1 rounded">
+      <%= simple_form_for @post do |f| %>
+        <div class="row mb-3 g-3">
+          <div class="col-6">
+            <%= f.input :post_type,
+              collection: ["Нудам", "Барам"],
+              label: "Барам/нудам"
+            %>
+          </div>
+          <div class="col-6">
+            <%= f.input :spaces,
+              collection: ["1", "2", "3", "4"],
+              label: "Бр. места"
+            %>
+          </div>
+        </div>
+        <div class="row mb-3 g-3">
+          <div class="col-6">
+            <%= f.input :from_city,
+              collection: ["Скопје", "Кочани"],
+              label: "Oд град"
+            %>
+          </div>
+          <div class="col-6">
+            <%= f.input :to_city,
+              collection: ["Скопје", "Кочани"],
+              label: "До град"
+            %>
+          </div>
+        </div>
+        <div class="row mb-3 g-2">
+          <div class="col-6">
+            <%= f.input :start_time,
+              html5: true,
+              label: "Тргање од"
+            %>
+          </div>
+          <div class="col-6">
+            <%= f.input :end_time,
+              html5: true,
+              label: "Тргање до"
+            %>
+          </div>
+        </div>
+        <%= f.input :phone,
+          label: "Мобилен",
+          input_html: { data: { autocomplete: "on" } },
+          placeholder: "Опционално"
+        %>
+        <p class="text-center">
+          <%= f.submit 'Барај',
+            class: "mt-4 btn btn-lg btn-dark w-100"
+          %>
+        </p>
+      <% end %>
     </div>
   <% end %>
 </div>
